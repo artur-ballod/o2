@@ -55,7 +55,7 @@ mixin inputField(options)
 
 //- review-card.pug
 mixin reviewCard(review)
-  .reviews__item.item
+  li.reviews__item.item
     time(datetime="" +review.datetime).item__date #{review.date}
 
     ul.item__rating.rating
