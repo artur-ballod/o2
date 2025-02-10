@@ -46,6 +46,7 @@
     }
 
     &.uploaded {
+        flex-shrink: 0;
         width: toRem(90);
         height: toRem(120);
         margin-right: toRem(8);
@@ -86,6 +87,23 @@
     align-items: stretch;
     gap: toRem(8);
     overflow-x: auto;
+
+    &::-webkit-scrollbar {
+        height: 6px;
+    }
+  
+    &::-webkit-scrollbar-track {
+        background: $white;
+    }
+  
+    &::-webkit-scrollbar-thumb {
+        background-color: $blue;
+        border: 1px solid $blue;
+    }
+  
+    &::-webkit-scrollbar-thumb:hover {
+        background-color: $button-active;
+    }
 }
 
 .input__preview-item {
