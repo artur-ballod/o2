@@ -1,0 +1,25 @@
+// Colors
+$white: var(--white);
+$dark: var(--dark);
+$gray: var(--gray);
+$gray-light: var(--gray-light);
+$orange: var(--orange);
+$input: var(--input);
+$input-focus: var(--input-focus);
+$input-error: var(--input-error);
+$blue: var(--blue);
+$red: var(--red);
+$light: var(--light);
+$bg-color: var(--bg-color);
+$reply-color: var(--reply-color);
+$button-focus: var(--button-focus);
+$button-active: var(--button-active);
+// Sizes
+$base-font-size: 16;
+$border-radius: 5;
+// Fonts
+$primary-font: 'Inter', sans-serif;
+// Padding
+$text-black: $dark;
+$text-white: $white;
+$cubic: cubic-bezier(0.4, 0.01, 0.165, 0.99);

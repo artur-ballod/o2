@@ -1,0 +1,51 @@
+.form {
+    width: 100%;
+    @include flex-setting(column, flex-start, flex-start);
+    gap: toRem(20);
+
+    &__list {
+        width: 100%;
+        @include flex-setting(column, flex-start, flex-start);
+        gap: toRem(20);
+    }
+
+    &__item {
+        width: 100%;
+        @include flex-setting(column, flex-start, flex-start);
+        gap: toRem(6);
+
+        &--rating {
+            gap: toRem(12);
+        }
+
+        &--file {
+            width: 100%;
+            padding: toRem(19);
+            border: toRem(1) dashed $gray-light;
+            border-radius: toRem($border-radius);
+            background-color: $white;
+            transition: 0.2s $cubic;
+            cursor: pointer;
+
+            &:hover {
+                border-color: $blue;
+                background-color: #e6f3fd;
+                transition: 0.2s $cubic;
+            }
+        }
+    }
+
+    &__success {
+        width: 100%;
+        @include flex-setting(column, flex-start, center);
+        gap: toRem(20);
+        
+        h3 {
+            @include font-setting($primary-font, toRem(24), toRem(29), 500, $dark);
+        }
+        p {
+            @include font-setting($primary-font, toRem(14), 150%, 400, $gray);
+            text-align: center;
+        }
+    }
+}

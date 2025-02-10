@@ -1,0 +1,162 @@
+.label {
+    @include font-setting($primary-font, toRem(12), toRem(15), 500, $gray);
+    display: inline-flex;
+    gap: toRem(3);
+
+    &__asterisk {
+        color: red;
+    }
+}
+
+.label--file {
+    width: 100%;
+    @include flex-setting(column, center, center);
+    padding: toRem(19);
+    gap: toRem(10);
+    cursor: pointer;
+
+    svg {
+        width: toRem(40);
+        height: toRem(40);
+        fill: $blue;
+    }
+
+    &.uploaded {
+        width: toRem(90);
+        height: toRem(120);
+        margin-right: toRem(8);
+        border: toRem(1) solid $blue;
+        border-radius: toRem($border-radius);
+        transition: 0.2s $cubic;
+
+        .label-text {
+            display: none;
+        }
+
+        &:hover {
+            background-color: #e6f3fd;
+            transition: 0.2s $cubic;
+        }
+    }
+}
+
+.label-text {
+    @include font-setting($primary-font, toRem(12), 130%, 400, $gray-light);
+    letter-spacing: 0.04em;
+    text-align: center;
+}
+
+.input {
+    width: 100%;
+    padding: toRem(11.5) toRem(24);
+    @include font-setting($primary-font, toRem(15), toRem(17), 500, $dark);
+    border: toRem(1) solid $input;
+    border-radius: toRem($border-radius);
+    background-color: $white;
+    transition: 0.2s $cubic;
+    outline: none;
+
+    &:focus {
+        box-shadow: 0 0 4px 0 var(--blue);
+        border-color: $input-focus;
+        transition: 0.2s $cubic;
+    }
+
+    // &:invalid {
+    //     border-color: $input-error;
+    //     transition: 0.2s $cubic;
+    // }
+
+    &.invalid {
+        border-color: $input-error;
+        transition: 0.2s $cubic;
+    }
+}
+
+.input__container {
+    width: 100%;
+    @include flex-setting(row, flex-start, stretch);
+    overflow: hidden;
+}
+
+.input--file {
+    display: none;
+}
+
+.input__preview {
+    width: auto;
+    display: flex;
+    align-items: stretch;
+    gap: toRem(8);
+    overflow-x: auto;
+}
+
+.input__preview-item {
+    flex-shrink: 0;
+    position: relative;
+    width: toRem(90);
+    height: toRem(120);
+    border-radius: toRem($border-radius);
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.input__preview-btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: toRem(5);
+    right: toRem(5);
+    width: toRem(20);
+    height: toRem(20);
+    border: none;
+    border-radius: toRem(10);
+    background-color: $dark;
+    color: #EFF3F5;
+    transition: 0.2s $cubic;
+
+    svg {
+        width: inherit;
+        height: inherit;
+        stroke: currentColor;
+    }
+
+    &:hover {
+        opacity: 0.8;
+        transition: 0.2s $cubic;
+    }
+}
+
+.textarea {
+    width: 100%;
+    min-height: toRem(140);
+    padding: toRem(14);
+    @include font-setting($primary-font, toRem(15), toRem(17), 500, $dark);
+    border: toRem(1) solid $input;
+    border-radius: toRem($border-radius);
+    background-color: $white;
+    transition: 0.2s $cubic;
+    resize: none;
+    outline: none;
+
+    &:focus {
+        box-shadow: 0 0 4px 0 var(--blue);
+        border-color: $input-focus;
+        transition: 0.2s $cubic;
+    }
+
+    // &:invalid {
+    //     border-color: $input-error;
+    //     transition: 0.2s $cubic;
+    // }
+
+    &.invalid {
+        border-color: $input-error;
+        transition: 0.2s $cubic;
+    }
+}

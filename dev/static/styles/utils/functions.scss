@@ -1,0 +1,8 @@
+@function toRem($value) {
+    $remValue: ($value / $base-font-size) + rem;
+    @return $remValue;
+}
+
+@function toPc($px-value, $screen-size) {
+    @return ($px-value / $screen-size) * 100%;
+}

@@ -1,0 +1,101 @@
+//- Кнопка
+mixin button(options)
+    button(type="" +options.type class=options.btnClass ? 'button ' + options.btnClass : 'button') #{options.text}
+//- input component
+mixin inputField(options)
+  li.form__item(class=options.groupClass ? options.groupClass : '')
+
+    if options.label
+      label(for=options.id class=options.labelClass ? 'label ' + options.labelClass : 'label')
+        | #{options.label}
+        if options.required
+          span.label__asterisk *
+
+    if options.type === 'file'
+        .input__container
+            input(
+                class=options.inputClass ? 'input--file ' + options.inputClass : 'input--file'
+                type="file"
+                id=options.id
+                name=options.name
+                accept=options.accept ? options.accept : ''
+                multiple=options.multiple ? true : false
+            )
+
+            label(for=options.id class=options.labelClass ? 'label--file ' + options.labelClass : 'label--file')
+                svg
+                    use(xlink:href="static/images/sprite/symbol/sprite.svg#upload")
+                span.label-text Загрузить фотографии. Максимальный вес 10 мегабайт. Расширение jpeg, png
+
+            //- Добавляем контейнер для превью изображений
+            .input__preview(id=options.previewContainerId)
+
+    else if options.type === 'textarea'
+      textarea(
+        class=options.inputClass ? 'textarea ' + options.inputClass : 'textarea'
+        id=options.id
+        name=options.name
+        placeholder=options.placeholder
+        required=options.required ? true : false
+        disabled=options.disabled ? true : false
+      ) #{options.value ? options.value : ''}
+
+    else
+      input(
+        class=options.inputClass ? 'input ' + options.inputClass : 'input'
+        type=options.type
+        id=options.id
+        name=options.name
+        placeholder=options.placeholder
+        required=options.required ? true : false
+        disabled=options.disabled ? true : false
+        value=options.value ? options.value : ''
+        inputmode=options.mode
+      )
+
+//- review-card.pug
+mixin reviewCard(review)
+  .reviews__item.item
+    time(datetime="" +review.datetime).item__date #{review.date}
+
+    ul.item__rating.rating
+      - for (var x = 1; x <= 5; x++)
+        if x <= review.rating
+          li.rating__star
+            svg
+                use(xlink:href="static/images/sprite/symbol/sprite.svg#star")
+        else
+          li.rating__star.rating__star--empty
+            svg
+                use(xlink:href="static/images/sprite/symbol/sprite.svg#star")
+
+    h3.item__name #{review.name}
+    p.item__description #{review.description}
+
+    if review.photos && review.photos.length > 0
+      .item__gallery
+        each photo in review.photos
+          picture.item__gallery-frame
+            source(
+              srcset=`${photo}.webp 1x, ${photo}_2x.webp 2x`,
+              type="image/webp"
+            )
+            source(
+              srcset=`${photo}.png 1x, ${photo}_2x.png 2x`,
+              type="image/png"
+            )
+            img.item__gallery-photo(
+              src=`${photo}.png`,
+              alt="Фото отзыва"
+            )
+
+    if review.reply
+      .item__reply
+        span.item__reply-icon
+            svg
+                use(xlink:href="static/images/sprite/symbol/sprite.svg#arrow")
+        .item__reply-body
+            time(datetime="" +review.reply.datetime).item__reply-date #{review.reply.date}
+            h3.item__reply-name Ответ от #{review.reply.author}
+            p.item__reply-description #{review.reply.description}
+            span.item__reply-legal С Уважением, #{review.reply.legal}

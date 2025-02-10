@@ -1,0 +1,20 @@
+.rating {
+    @include flex-setting(row, flex-start, center);
+    gap: toRem(3);
+
+    &__star {
+        width: toRem(18);
+        height: toRem(18);
+        color: $orange;
+    }
+
+    &__star--empty {
+        color: $light;
+    }
+
+    &__star svg {
+        width: toRem(18);
+        height: toRem(18);
+        fill: currentColor;
+    }
+}

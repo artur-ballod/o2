@@ -1,0 +1,160 @@
+@import "utils/libs";
+@import "utils/vars";
+@import "utils/mixins";
+@import "utils/fonts";
+@import "utils/sprite";
+@import "utils/fluid-font";
+@import "utils/functions";
+@import "utils/animations";
+//@include sprites($spritesheet-sprites);
+
+:root {
+  --vh: 1vh;
+  --white: #ffffff;
+  --dark: #1a1a1a;
+  --gray: #464646;
+  --bg-color: #f0f0f0;
+  --reply-color: #f6f6f6;
+  --gray-light: #b1b1b1;
+  --orange: #ffb648;
+  --light: #e4e2e2;
+  --blue: #0d78ff;
+  --red: #EA2828;
+  --input: #dadce0;
+  --input-focus: #0d78ff;
+  --input-error: #ea2828;
+  --button-focus: #0b68dd;
+  --button-active: #0358c3;
+  accent-color: var(--white);
+}
+
+html {
+  font-family: $primary-font, Arial, serif;
+  color: $white;
+  font-size: 16px;
+  font-style: normal;
+  font-optical-sizing: auto;
+  height: 100%;
+  -webkit-tap-highlight-color: transparent;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  background-color: $white;
+  position: relative;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: $gray-light;
+  opacity: 1;
+}
+
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+  color: $gray-light;
+  opacity: 1;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+  color: $gray-light;
+}
+
+input::-ms-input-placeholder,
+textarea::-ms-input-placeholder {
+  color: $gray-light;
+}
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video,
+textarea {
+  vertical-align: middle;
+}
+
+textarea {
+  resize: none;
+}
+
+section {
+  position: relative;
+}
+
+input,
+select,
+button {
+  outline: none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px rgba(255, 255, 255, 0) inset !important;
+  -webkit-text-fill-color: $dark;
+}
+
+button {
+  cursor: pointer;
+}
+
+.body {
+  width: 100%;
+
+  &.no-scroll {
+    overflow: hidden;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+//Модули
+@import "modules/modules";

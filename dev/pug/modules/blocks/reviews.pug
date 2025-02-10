@@ -1,0 +1,111 @@
+article.reviews
+    h2.reviews__title Отзывы о товаре (#{reviewsCount})
+    section.reviews__content
+        ul.reviews__list
+            +reviewCard({
+                date: '08.09.2023',
+                dateTime: '2023-08-09T20:00:00',
+                rating: 4,
+                name: 'Балашова Татьяна',
+                description: 'Отличное летнее платье с подкладкой, мне очень понравилось, но мне не подошло. покупала на 52 52ой, мало, на 48 или на 50 будет отлично.',
+                photos: [
+                    '/static/images/content/image-1',
+                    '/static/images/content/image-2'
+                ],
+                reply: {
+                    author: 'Ответ магазина:',
+                    date: '08.09.2023',
+                    dateTime: '2023-09-09T20:00:00',
+                    description: 'Здравствуйте! Спасибо за Ваш отзыв! Мы очень рады, что Вы остались довольны сервисом и качеством товаров, представленных в нашем интернет-магазине! Надеемся увидеть Вас в числе наших постоянных клиентов!',
+                    legal: 'клиентский сервис интернет-магазина'
+                }
+            })
+            +reviewCard({
+                date: '08.09.2023',
+                dateTime: '2023-08-09T20:00:00',
+                rating: 4,
+                name: 'Балашова Татьяна',
+                description: 'Отличное летнее платье с подкладкой, мне очень понравилось, но мне не подошло. покупала на 52 52ой, мало, на 48 или на 50 будет отлично.',
+                photos: [
+                    '/static/images/content/image-1',
+                    '/static/images/content/image-2'
+                ],
+                reply: {
+                    author: 'Ответ магазина:',
+                    date: '08.09.2023',
+                    dateTime: '2023-09-09T20:00:00',
+                    description: 'Здравствуйте! Спасибо за Ваш отзыв! Мы очень рады, что Вы остались довольны сервисом и качеством товаров, представленных в нашем интернет-магазине! Надеемся увидеть Вас в числе наших постоянных клиентов!',
+                    legal: 'клиентский сервис интернет-магазина'
+                }
+            })
+        aside.reviews__aside#aside
+            h3.reviews__subtitle Оставить свой отзыв
+            form(action="/submit" method="POST" enctype="multipart/form-data" id="feedbackForm").form.reviews__form
+                ul.form__list
+                    +inputField({
+                        label: 'Как вас зовут?',
+                        type: 'text',
+                        id: 'name',
+                        name: 'name',
+                        placeholder: 'Иван Иванов',
+                        required: true,
+                        labelClass: 'form__label',
+                        inputClass: 'form__input',
+                        inputmode: 'text'
+                    })
+                    +inputField({
+                        label: 'E-mail',
+                        type: 'email',
+                        id: 'main-email',
+                        name: 'email',
+                        placeholder: '@',
+                        required: false,
+                        labelClass: 'form__label',
+                        inputClass: 'form__input',
+                        inputmode: 'email'
+                    })
+                    +inputField({
+                        label: 'Контактный телефон',
+                        type: 'tel',
+                        id: 'phone',
+                        name: 'phone',
+                        placeholder: '+7',
+                        required: false,
+                        labelClass: 'form__label',
+                        inputClass: 'form__input',
+                        inputmode: 'tel'
+                    })
+
+                    li.form__item.form__item--rating
+                        label(for="rating").form__label.label Ваша оценка:
+                        ul.form__rating.rating#rating
+                            - for (var x = 1; x <= 5; x++)
+                                li.rating__star(data-value=x)
+                                    svg
+                                        use(xlink:href="static/images/sprite/symbol/sprite.svg#star")
+
+                    +inputField({
+                        label: 'Комментарий',
+                        type: 'textarea',
+                        inputClass: 'form__input',
+                        id: 'comment',
+                        name: 'comment',
+                        placeholder: 'Введите текст',
+                        required: true
+                    })
+
+                    +inputField({
+                        groupClass: 'form__item--file',
+                        type: 'file',
+                        id: 'images',
+                        name: 'images',
+                        accept: 'image/jpeg, image/png',
+                        multiple: true,
+                        previewContainerId: 'imagesList'
+                    })
+
+                +button({
+                    btnClass: 'form__submit',
+                    type: 'submit',
+                    text: 'Отправить'
+                })

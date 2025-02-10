@@ -1,0 +1,89 @@
+.item {
+    width: 100%;
+    @include flex-setting(column, flex-start, flex-start);
+    padding: toRem(30) 0;
+    border-top: toRem(1) solid $light;
+
+    &__date {
+        margin-bottom: toRem(8);
+        @include font-setting($primary-font, toRem(12), 1, 400, $gray-light);
+    }
+
+    &__rating {
+        margin-bottom: toRem(8);
+    }
+
+    &__name {
+        margin-bottom: toRem(24);
+        @include font-setting($primary-font, toRem(16), 1, 500, $dark);
+    }
+
+    &__description {
+        margin-bottom: toRem(24);
+        @include font-setting($primary-font, toRem(14), 150%, 400, $gray)
+    }
+
+    &__gallery {
+        display: flex;
+        align-items: stretch;
+        gap: toRem(8);
+
+        &-frame {
+            @include flex-setting(column, center, center);
+            width: toRem(90);
+            height: toRem(120);
+            border-radius: toRem($border-radius);
+            overflow: hidden;
+        }
+
+        &-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    &__reply {
+        display: flex;
+        gap: toRem(20);
+        padding: toRem(32) 0 0 toRem(40);
+
+        &-icon {
+            width: toRem(24);
+            height: toRem(24);
+            color: $gray-light;
+        }
+
+        &-icon svg {
+            width: inherit;
+            height: inherit;
+            fill: currentColor;
+        }
+
+        &-body {
+            width: 100%;
+            @include flex-setting(column, flex-start, flex-start);
+            padding: toRem(24);
+            border-radius: toRem($border-radius);
+            background-color: $reply-color;
+        }
+
+        &-date {
+            @extend .item__date;
+        }
+
+        &-name {
+            @extend .item__name;
+        }
+
+        &-description {
+            @extend .item__description;
+        }
+
+        &-legal {
+            max-width: 80%;
+            @include font-setting($primary-font, toRem(12), 1, 500, $dark);
+            text-align: left;
+        }
+    }
+}

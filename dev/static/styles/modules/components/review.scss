@@ -1,0 +1,73 @@
+.reviews {
+    width: 100vw;
+    padding: toRem(40) toPc(16px, 320px);
+    @include flex-setting(column, flex-start, flex-start);
+
+    &__title {
+        padding: toRem(15.5) 0;
+        @include font-setting($primary-font, toRem(32), toRem(39), 500, $dark);
+        text-align: left;
+    }
+
+    &__content {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: toRem(30);
+    }
+
+    &__aside {
+        width: 100%;
+        @include flex-setting(column, flex-start, flex-start);
+        padding: toRem(30);
+        background-color: $bg-color;
+        border-radius: toRem(10);
+
+        &.form--submitted {
+            padding: toRem(150) toRem(40);
+
+            .reviews__subtitle {
+                display: none;
+            }
+        }
+    }
+
+    &__subtitle {
+        @include font-setting($primary-font, toRem(24), toRem(29), 500, $dark);
+        margin-bottom: toRem(30);
+    }
+}
+
+@include min-screen(768px) {
+    .reviews {
+        padding-left: toPc(30px, 768px);
+        padding-right: toPc(30px, 768px);
+    }
+}
+
+@include min-screen(1366px) {
+    .reviews {
+        padding: toRem(80) toPc(40px, 1366px);
+
+        &__content {
+            display: grid;
+            grid-template-columns: 1fr minmax(toRem(400), toRem(460));
+            column-gap: toRem(30);
+            justify-content: start;
+            align-items: start;
+        }
+
+        &__aside {
+            &.form--submitted {
+                padding: toRem(352) toRem(30);
+            }
+        }
+    }
+}
+
+@include min-screen(1600px) {
+    .reviews {
+        padding-left: calc((100% - 1440px) / 2);
+        padding-right: calc((100% - 1440px) / 2);
+    }
+}
