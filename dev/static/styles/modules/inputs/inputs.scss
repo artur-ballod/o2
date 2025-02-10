@@ -97,6 +97,7 @@
     width: toRem(90);
     height: toRem(120);
     border-radius: toRem($border-radius);
+    overflow: hidden;
 
     img {
         width: 100%;
