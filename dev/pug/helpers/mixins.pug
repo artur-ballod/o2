@@ -63,7 +63,7 @@ mixin ratingField()
 //- review-card.pug
 mixin reviewCard(review)
   li.reviews__item.item
-    time(datetime="" +review.datetime).item__date #{review.date}
+    time(datetime='' + review.dateTime).item__date #{review.date}
 
     ul.item__rating.rating
       - for (var x = 1; x <= 5; x++)
@@ -102,7 +102,7 @@ mixin reviewCard(review)
             svg
                 use(xlink:href="static/images/sprite/symbol/sprite.svg#arrow")
         .item__reply-body
-            time(datetime="" +review.reply.datetime).item__reply-date #{review.reply.date}
+            time(datetime="" +review.reply.dateTime).item__reply-date #{review.reply.date}
             h3.item__reply-name Ответ от #{review.reply.author}
             p.item__reply-description #{review.reply.description}
             span.item__reply-legal С Уважением, #{review.reply.legal}
