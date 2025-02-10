@@ -77,7 +77,7 @@ article.reviews
                     })
 
                     li.form__item.form__item--rating
-                        label(for="rating").form__label.label Ваша оценка:
+                        span(for="rating").form__label.label Ваша оценка:
                         ul.form__rating.rating#rating
                             - for (var x = 1; x <= 5; x++)
                                 li.rating__star(data-value=x)
