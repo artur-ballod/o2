@@ -71,12 +71,6 @@
     text-align: center;
 }
 
-.input__container {
-    width: 100%;
-    @include flex-setting(row, flex-start, stretch);
-    overflow: hidden;
-}
-
 .input--file {
     display: none;
 }

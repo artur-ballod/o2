@@ -9,6 +9,12 @@
         gap: toRem(20);
     }
 
+    &__container {
+        width: 100%;
+        @include flex-setting(row, flex-start, stretch);
+        overflow: hidden;
+    }
+
     &__item {
         width: 100%;
         @include flex-setting(column, flex-start, flex-start);

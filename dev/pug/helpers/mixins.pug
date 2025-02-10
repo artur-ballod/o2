@@ -12,7 +12,7 @@ mixin inputField(options)
           span.label__asterisk *
 
     if options.type === 'file'
-        .input__container
+        .form__container
             input(
                 class=options.inputClass ? 'input--file ' + options.inputClass : 'input--file'
                 type="file"
@@ -26,9 +26,7 @@ mixin inputField(options)
                 svg
                     use(xlink:href="static/images/sprite/symbol/sprite.svg#upload")
                 span.label-text Загрузить фотографии. Максимальный вес 10 мегабайт. Расширение jpeg, png
-
-            //- Добавляем контейнер для превью изображений
-            .input__preview(id=options.previewContainerId)
+            .form__input-preview.input__preview(id=options.previewContainerId)
 
     else if options.type === 'textarea'
       textarea(
