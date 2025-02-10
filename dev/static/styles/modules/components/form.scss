@@ -32,6 +32,14 @@
                 background-color: #e6f3fd;
                 transition: 0.2s $cubic;
             }
+
+            &.uploaded {
+                &:hover {
+                    border-color: $gray-light;
+                    background-color: $white;
+                    transition: 0.2s $cubic;
+                }
+            }
         }
     }
 

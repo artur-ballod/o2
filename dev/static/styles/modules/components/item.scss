@@ -11,6 +11,10 @@
 
     &__rating {
         margin-bottom: toRem(8);
+        
+        .rating__star {
+            cursor: default;
+        }
     }
 
     &__name {

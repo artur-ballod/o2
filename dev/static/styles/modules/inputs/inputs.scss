@@ -8,6 +8,30 @@
     }
 }
 
+// Просто все поля ввода
+.input {
+    width: 100%;
+    padding: toRem(11.5) toRem(24);
+    @include font-setting($primary-font, toRem(15), toRem(17), 500, $dark);
+    border: toRem(1) solid $input;
+    border-radius: toRem($border-radius);
+    background-color: $white;
+    transition: 0.2s $cubic;
+    outline: none;
+
+    &:focus {
+        box-shadow: 0 0 4px 0 var(--blue);
+        border-color: $input-focus;
+        transition: 0.2s $cubic;
+    }
+
+    &.invalid {
+        border-color: $input-error;
+        transition: 0.2s $cubic;
+    }
+}
+
+// Стилизация инпута загрузки файла
 .label--file {
     width: 100%;
     @include flex-setting(column, center, center);
@@ -39,38 +63,11 @@
         }
     }
 }
-
+// Текст предупреждения
 .label-text {
     @include font-setting($primary-font, toRem(12), 130%, 400, $gray-light);
     letter-spacing: 0.04em;
     text-align: center;
-}
-
-.input {
-    width: 100%;
-    padding: toRem(11.5) toRem(24);
-    @include font-setting($primary-font, toRem(15), toRem(17), 500, $dark);
-    border: toRem(1) solid $input;
-    border-radius: toRem($border-radius);
-    background-color: $white;
-    transition: 0.2s $cubic;
-    outline: none;
-
-    &:focus {
-        box-shadow: 0 0 4px 0 var(--blue);
-        border-color: $input-focus;
-        transition: 0.2s $cubic;
-    }
-
-    // &:invalid {
-    //     border-color: $input-error;
-    //     transition: 0.2s $cubic;
-    // }
-
-    &.invalid {
-        border-color: $input-error;
-        transition: 0.2s $cubic;
-    }
 }
 
 .input__container {
@@ -150,11 +147,6 @@
         border-color: $input-focus;
         transition: 0.2s $cubic;
     }
-
-    // &:invalid {
-    //     border-color: $input-error;
-    //     transition: 0.2s $cubic;
-    // }
 
     &.invalid {
         border-color: $input-error;

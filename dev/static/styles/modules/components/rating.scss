@@ -5,11 +5,12 @@
     &__star {
         width: toRem(18);
         height: toRem(18);
-        color: $orange;
-    }
-
-    &__star--empty {
         color: $light;
+        cursor: pointer;
+
+        &.active {
+            color: $orange;
+        }
     }
 
     &__star svg {

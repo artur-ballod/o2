@@ -53,6 +53,13 @@ mixin inputField(options)
         inputmode=options.mode
       )
 
+mixin ratingField()
+  ul.form__rating.rating
+    - for (var x = 1; x <= 5; x++)
+      li.rating__star(data-value=x)
+        svg
+          use(xlink:href="static/images/sprite/symbol/sprite.svg#star")
+
 //- review-card.pug
 mixin reviewCard(review)
   li.reviews__item.item
@@ -61,11 +68,11 @@ mixin reviewCard(review)
     ul.item__rating.rating
       - for (var x = 1; x <= 5; x++)
         if x <= review.rating
-          li.rating__star
+          li.rating__star.active(data-value=x)
             svg
                 use(xlink:href="static/images/sprite/symbol/sprite.svg#star")
         else
-          li.rating__star.rating__star--empty
+          li.rating__star
             svg
                 use(xlink:href="static/images/sprite/symbol/sprite.svg#star")
 

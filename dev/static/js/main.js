@@ -34,10 +34,49 @@ class PhoneMask {
   }
 }
 
-class ImageUploader {
+class RatingHandler {
+  constructor(containerId) {
+    this.container = document.getElementById(containerId);
+    this.ratingInput = this.container.querySelector('input[type="hidden"]');
+    this.stars = this.container.querySelectorAll('.rating__star');
+    this.currentRating = 0;
+    this.container.addEventListener('click', this.handleClick.bind(this));
+  }
+
+  handleClick(event) {
+    const star = event.target.closest('.rating__star');
+    if (star) {
+      const value = star.getAttribute('data-value');
+      this.setRating(value);
+    }
+  }
+
+  setRating(value) {
+    this.currentRating = value;
+    this.ratingInput.value = this.currentRating;
+    this.updateStars();
+  }
+
+  updateStars() {
+    this.stars.forEach(star => {
+      if (parseInt(star.getAttribute('data-value')) <= parseInt(this.currentRating)) {
+        star.classList.add('active');
+      } else {
+        star.classList.remove('active');
+      }
+    });
+  }
+
+  getRating() {
+    return this.currentRating;
+  }
+}
+
+class mainApp {
   constructor(options) {
     this.aside = document.getElementById(options.asideId);
     this.form = document.getElementById(options.formId);
+    this.fileWrap = document.querySelector(options.fileWrap);
     this.fileInput = document.getElementById(options.fileInputId);
     this.previewContainer = document.getElementById(options.previewContainerId);
     this.labelTextSpan = document.querySelector(options.labelTextSelector);
@@ -47,14 +86,30 @@ class ImageUploader {
     this.defaultLabelText = this.labelTextSpan.textContent;
     this.emailInput = document.getElementById('main-email');
     this.phoneInput = document.getElementById('phone');
+    this.nameInput = document.getElementById('name');
+    this.commentInput = document.getElementById('comment');
     this.successMessageContainer = document.getElementById('successMessage');
     new PhoneMask(this.phoneInput);
+    this.ratingHandler = new RatingHandler('rating');
 
     if (this.fileInput) {
       this.fileInput.addEventListener('change', this.handleFileChange.bind(this));
     }
     if (this.form) {
       this.form.addEventListener('submit', this.handleFormSubmit.bind(this));
+
+      if (this.emailInput) {
+        this.emailInput.addEventListener('input', this.validateEmail.bind(this));
+      }
+      if (this.phoneInput) {
+        this.phoneInput.addEventListener('input', this.validatePhone.bind(this));
+      }
+      if (this.nameInput) {
+        this.nameInput.addEventListener('input', this.validateName.bind(this));
+      }
+      if (this.commentInput) {
+        this.commentInput.addEventListener('input', this.validateComment.bind(this));
+      }
     }
   }
 
@@ -124,26 +179,116 @@ class ImageUploader {
   }
 
   addUploadedClass() {
+    this.fileWrap.classList.add('uploaded');
     this.label.classList.add('uploaded');
   }
 
   checkUploadedClass() {
     if (this.previewContainer.children.length === 0) {
       this.label.classList.remove('uploaded');
+      this.fileWrap.classList.remove('uploaded');
     }
   }
 
   handleFormSubmit(event) {
     event.preventDefault();
-
+    const name = this.nameInput.value.trim();
     const email = this.emailInput.value.trim();
-    const emailRegex = /^[^s@]+@[^s@]+.[^s@]+$/;
+    const phone = this.phoneInput.value.trim();
+    const comment = this.commentInput.value.trim();
+    const emailRegex = /^[^ ]+@[^ ]+\.[a-z]{1,3}$/;
+    const phoneRegex = /^\+7\d{10}$/;
+    const rating = this.ratingHandler.getRating();
+    let isValid = true;
+
+    if (name === '') {
+      this.addInvalidClass(this.nameInput);
+      isValid = false;
+    } else {
+      this.removeInvalidClass(this.nameInput);
+    }
+
     if (!emailRegex.test(email)) {
-      alert('Пожалуйста, введите корректный email');
+      this.addInvalidClass(this.emailInput);
+      isValid = false;
+    } else {
+      this.removeInvalidClass(this.emailInput);
+    }
+
+    if (!phoneRegex.test(phone)) {
+      this.addInvalidClass(this.phoneInput);
+      isValid = false;
+    } else {
+      this.removeInvalidClass(this.phoneInput);
+    }
+
+    if (comment === '') {
+      this.addInvalidClass(this.commentInput);
+      isValid = false;
+    } else {
+      this.removeInvalidClass(this.commentInput);
+    }
+
+    if (rating === 0) {
+      alert('Пожалуйста, выберите рейтинг.');
+      isValid = false;
+    }
+
+    if (!isValid) {
+      alert('Пожалуйста, исправьте ошибки в форме');
       return;
     }
-    
+
     this.showThankYouMessage();
+  }
+
+  validateEmail() {
+    const email = this.emailInput.value.trim();
+    const emailRegex = /^[^ ]+@[^ ]+\.[a-z]{1,3}$/;
+    if (!emailRegex.test(email)) {
+      this.addInvalidClass(this.emailInput);
+    } else {
+      this.removeInvalidClass(this.emailInput);
+    }
+  }
+
+  validatePhone() {
+    const phone = this.phoneInput.value.replace(/[^\d+]/g, '');
+    const phoneRegex = /^\+7\d{10}$/;
+    if (phoneRegex.test(phone)) {
+      this.removeInvalidClass(this.phoneInput);
+    } else {
+      if (phone.startsWith('+7') && phone.length === 10) {
+        this.removeInvalidClass(this.phoneInput);
+      } else {
+        this.addInvalidClass(this.phoneInput);
+      }
+    }
+  }
+  validateName() {
+    const name = this.nameInput.value.trim();
+    if (name === '') {
+      this.addInvalidClass(this.nameInput);
+    } else {
+      this.removeInvalidClass(this.nameInput);
+    }
+  }
+
+  validateComment() {
+    const comment = this.commentInput.value.trim();
+    if (comment === '') {
+      this.addInvalidClass(this.commentInput);
+    } else {
+      this.removeInvalidClass(this.commentInput);
+    }
+  }
+
+  addInvalidClass(element) {
+    element.classList.add('invalid');
+  }
+
+  removeInvalidClass(element) {
+    element.classList.remove('invalid');
   }
 
   showThankYouMessage() {
@@ -162,15 +307,17 @@ class ImageUploader {
 
 document.addEventListener('DOMContentLoaded', () => {
   try {
-    const uploader = new ImageUploader({
+    const uploader = new mainApp({
       formId: 'feedbackForm',
       asideId: 'aside',
+      fileWrap: '.form__item--file',
       fileInputId: 'images',
       previewContainerId: 'imagesList',
       labelTextSelector: '.label-text',
       labelSelector: '.label--file',
       maxSize: 10 * 1024 * 1024,
-      allowedTypes: ['image/jpeg', 'image/png']
+      allowedTypes: ['image/jpeg', 'image/png'],
+      containerId: 'rating'
     });
   } catch (error) {
     console.error(error.message);
