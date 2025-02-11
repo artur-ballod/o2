@@ -3,6 +3,7 @@
     gap: toRem(3);
 
     &__star {
+        @include flex-setting(column, center, center);
         width: toRem(18);
         height: toRem(18);
         color: $light;

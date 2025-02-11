@@ -13,6 +13,40 @@
         width: 100%;
         @include flex-setting(row, flex-start, stretch);
         overflow: hidden;
+
+        &.uploaded {
+            .form__label {
+                flex-shrink: 0;
+                width: toRem(90);
+                height: toRem(120);
+                margin-right: toRem(8);
+                border: toRem(1) solid $blue;
+                border-radius: toRem($border-radius);
+                transition: 0.2s $cubic;
+        
+                .label-text {
+                    display: none;
+                }
+        
+                &:hover {
+                    background-color: #e6f3fd;
+                    transition: 0.2s $cubic;
+                }
+            }
+        }
+
+        
+        &.error {
+            svg {
+                fill: $input-error;
+                transition: 0.2s $cubic;
+            }
+
+            span {
+                color: $input-error;
+                transition: 0.2s $cubic;
+            }
+        }
     }
 
     &__item {

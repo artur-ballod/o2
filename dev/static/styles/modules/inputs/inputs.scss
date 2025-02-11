@@ -31,6 +31,10 @@
     }
 }
 
+.input__error {
+    @include font-setting($primary-font, toRem(10), toRem(16), 400, $input-error);
+}
+
 // Стилизация инпута загрузки файла
 .label--file {
     width: 100%;
@@ -69,6 +73,10 @@
     @include font-setting($primary-font, toRem(12), 130%, 400, $gray-light);
     letter-spacing: 0.04em;
     text-align: center;
+
+    &.error {
+        color: $input-error;
+    }
 }
 
 .input--file {

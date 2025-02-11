@@ -26,6 +26,13 @@ article.reviews
                 rating: 4,
                 name: 'Балашова Татьяна',
                 description: 'Отличное летнее платье с подкладкой, мне очень понравилось, но мне не подошло. покупала на 52 52ой, мало, на 48 или на 50 будет отлично.',
+                reply: {
+                    author: 'Ответ магазина:',
+                    date: '10.09.2023',
+                    dateTime: '2023-09-10',
+                    description: 'Здравствуйте! Спасибо за Ваш отзыв! Мы очень рады, что Вы остались довольны сервисом и качеством товаров, представленных в нашем интернет-магазине! Надеемся увидеть Вас в числе наших постоянных клиентов!',
+                    legal: 'клиентский сервис интернет-магазина'
+                }
             })
         aside.reviews__aside#aside
             h3.reviews__subtitle Оставить свой отзыв
@@ -40,7 +47,8 @@ article.reviews
                         required: true,
                         labelClass: 'form__label',
                         inputClass: 'form__input',
-                        inputmode: 'text'
+                        inputmode: 'text',
+                        errorId: 'nameError'
                     })
                     +inputField({
                         label: 'E-mail',
@@ -51,7 +59,8 @@ article.reviews
                         required: false,
                         labelClass: 'form__label',
                         inputClass: 'form__input',
-                        inputmode: 'email'
+                        inputmode: 'email',
+                        errorId: 'emailError'
                     })
                     +inputField({
                         label: 'Контактный телефон',
@@ -62,7 +71,8 @@ article.reviews
                         required: false,
                         labelClass: 'form__label',
                         inputClass: 'form__input',
-                        inputmode: 'tel'
+                        inputmode: 'tel',
+                        errorId: 'phoneError'
                     })
 
                     li.form__item.form__item--rating#rating
@@ -77,7 +87,8 @@ article.reviews
                         id: 'comment',
                         name: 'comment',
                         placeholder: 'Введите текст',
-                        required: true
+                        required: true,
+                        errorId: 'commentError'
                     })
 
                     +inputField({
