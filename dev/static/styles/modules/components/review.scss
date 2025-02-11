@@ -1,5 +1,5 @@
 .reviews {
-    width: 100vw;
+    width: 100%;
     padding: toRem(40) toPc(16px, 320px);
     @include flex-setting(column, flex-start, flex-start);
 
@@ -51,7 +51,7 @@
 
         &__content {
             display: grid;
-            grid-template-columns: 1fr minmax(toRem(400), toRem(460));
+            grid-template-columns: minmax(toRem(700), toRem(950)) minmax(toRem(400), toRem(460));
             column-gap: toRem(30);
             justify-content: start;
             align-items: start;

@@ -204,20 +204,36 @@ class mainApp {
 
   handleFormSubmit(event) {
     event.preventDefault();
+
     let isValid = true;
+    
+    this.validateEmail();
+    this.validatePhone();
+    this.validateName();
+    this.validateComment();
+
+    if (this.emailInput.classList.contains('invalid') ||
+        this.phoneInput.classList.contains('invalid') ||
+        this.nameInput.classList.contains('invalid') ||
+        this.commentInput.classList.contains('invalid')) {
+      isValid = false;
+    }
 
     if (!isValid) {
       alert('Пожалуйста, исправьте ошибки в форме');
       return;
     }
-  
+
     this.showThankYouMessage();
   }
 
   validateEmail() {
     const email = this.emailInput.value.trim();
     const emailRegex = /^[^ ]+@[^ ]+\.[a-z]{1,3}$/;
-    if (!emailRegex.test(email)) {
+    if (email === '') {
+      this.removeInvalidClass(this.emailInput);
+      this.hideError(this.emailError);
+    } else if (!emailRegex.test(email)) {
       this.addInvalidClass(this.emailInput);
       this.showError(this.emailError, 'Пожалуйста, введите корректный email (например, example@domain.com)');
     } else {
@@ -229,8 +245,11 @@ class mainApp {
   validatePhone() {
     let phone = this.phoneInput.value.replace(/[^\d+]/g, '');
     const phoneRegex = /^\+7\d{10}$/;
-  
-    if (phoneRegex.test(phone) || (phone.startsWith('+7') && phone.length === 12)) {
+
+    if (phone === '') {
+      this.removeInvalidClass(this.phoneInput);
+      this.hideError(this.phoneError);
+    } else if (phoneRegex.test(phone) || (phone.startsWith('+7') && phone.length === 12)) {
       this.removeInvalidClass(this.phoneInput);
       this.hideError(this.phoneError);
     } else {
@@ -290,7 +309,7 @@ class mainApp {
       element.classList.add('active');
     }
   }
-  
+
   hideError(element) {
     if (element) {
       element.textContent = '';
