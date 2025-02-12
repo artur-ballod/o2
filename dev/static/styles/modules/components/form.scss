@@ -90,6 +90,7 @@
         
         h3 {
             @include font-setting($primary-font, toRem(24), toRem(29), 500, $dark);
+            text-align: center;
         }
         p {
             @include font-setting($primary-font, toRem(14), 150%, 400, $gray);
